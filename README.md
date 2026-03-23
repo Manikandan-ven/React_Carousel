@@ -1,5 +1,5 @@
 # Ex05 Image Carousel
-## Date:
+## Date:23.03.2026
 
 ## AIM
 To create a Image Carousel using React 
@@ -39,9 +39,113 @@ Use setInterval to call the nextImage() function at regular intervals.
 Clean up the interval when the component unmounts using clearInterval to prevent memory leaks.
 
 ## PROGRAM
+App.jsx
+```
+import React, { useState } from "react";
+import "./App.css";
 
+function App() {
+  const images = [
+    "https://picsum.photos/900/500?random=1",
+    "https://picsum.photos/900/500?random=2",
+    "https://picsum.photos/900/500?random=3",
+    "https://picsum.photos/900/500?random=4"
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  const nextImage = () => {
+    setIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  return (
+    <div className="carousel">
+      <h2>🌇 Image Carousel Demo 🌇</h2>
+
+      <div className="carousel-container">
+        <button className="arrow left" onClick={prevImage}>❮</button>
+
+        <img
+          src={images[index]}
+          alt="carousel"
+          className="carousel-image"
+        />
+
+        <button className="arrow right" onClick={nextImage}>❯</button>
+      </div>
+    </div>
+  );
+}
+
+export default App;git 
+```
+App.css
+```
+body {
+  background: linear-gradient(to right, #1d2b64, #f8cdda);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial;
+}
+
+.carousel {
+  text-align: center;
+  color: white;
+}
+
+.carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-image {
+  width: 550px;
+  height: 320px;
+  border-radius: 15px;
+  object-fit: cover;
+  border: 3px solid white;
+}
+
+/* buttons */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.left {
+  left: -60px;
+}
+
+.right {
+  right: -60px;
+}
+
+.arrow:hover {
+  background: gray;
+}
+```
 
 ## OUTPUT
+<img width="1913" height="1129" alt="image" src="https://github.com/user-attachments/assets/8da9650e-eaa5-45b2-92c5-4682cc84150d" />
+<img width="1919" height="1135" alt="image" src="https://github.com/user-attachments/assets/3c7cf790-ead5-4924-b9cd-17ba9c6f1095" />
+<img width="1911" height="1134" alt="image" src="https://github.com/user-attachments/assets/7c063f99-adfd-4a71-b00f-37b9dd819662" />
+<img width="1919" height="1131" alt="image" src="https://github.com/user-attachments/assets/d1fb8cf0-e3ce-48cc-bd58-53c697bc87db" />
 
 
 ## RESULT
